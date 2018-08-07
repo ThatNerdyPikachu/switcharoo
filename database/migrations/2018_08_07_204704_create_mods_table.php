@@ -15,6 +15,12 @@ class CreateModsTable extends Migration
     {
         Schema::create('mods', function (Blueprint $table) {
             $table->increments('id');
+            $table->string("name");
+            $table->string("description");
+            $table->integer("author_id");
+            $table->integer("game_id");
+            $table->string("url");
+            $table->string("image_url");
             $table->timestamps();
         });
     }

@@ -9,7 +9,7 @@ use App\Mod;
 class ModController extends Controller
 {
     public function __construct() {
-        $this->middleware("auth");
+        $this->middleware("auth")->except("view");
     }
 
     public function new() {
@@ -29,5 +29,9 @@ class ModController extends Controller
     	$mod->url = config("app.url").'/'.str_replace("public", "storage", $request->file("file")->store("public/mods"));
     	$mod->image_url = config("app.url").'/'.str_replace("public", "storage", $request->file("image")->store("public/images"));
     	$mod->save();
+    }
+
+    public function view(Mod $mod) {
+        return view("pages.view", ["mod" => $mod]);
     }
 }

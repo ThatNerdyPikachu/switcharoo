@@ -9,7 +9,7 @@ class Mod extends Model
 
 	protected $guarded = [];
 
-    public function author() {
+    public function user() {
     	return $this->belongsTo("App\User");
     }
 

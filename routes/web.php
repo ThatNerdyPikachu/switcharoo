@@ -1,5 +1,7 @@
 <?php
 
+use App\Mod;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,12 +14,14 @@
 */
 
 Route::get('/', function () {
-    return view('pages.home');
+    $mods = Mod::all()->chunk(3);
+    return view('pages.home', ["mods" => $mods]);
 })->name("home");
 
 Route::get("/login", "AuthController@redirect")->name("login");
 Route::get("/callback", "AuthController@callback");
 Route::get("/logout", "AuthController@logout")->name("logout");
 
-Route::get("/new", "ModController@new")->name("new");
+Route::get("/mods/new", "ModController@new")->name("new");
 Route::post("/mods", "ModController@store");
+Route::get("/mods/{mod}", "ModController@view")->name("view");

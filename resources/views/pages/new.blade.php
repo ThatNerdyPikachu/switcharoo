@@ -25,11 +25,11 @@
            <textarea name="description" class="form-control" id="description" placeholder="Description" maxlength="500" required></textarea>
        </div>
        <div class="form-control">
-           <label for="file">The mod itself</label>
+           <label for="file">The mod itself (.rar, .zip, or .7z)</label>
            <input type="file" name="file" class="form-control" id="file" accept=".zip,.rar,.7z" required>
        </div>
        <div class="form-control">
-           <label for="image">An image to show off the mod</label>
+           <label for="image">An image to show off the mod (.png only)</label>
            <input type="file" name="image" class="form-control" id="image" accept=".png" required>
        </div>
        <br><button type="submit" class="btn btn-primary">Submit</button>

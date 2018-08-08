@@ -2,7 +2,6 @@
 
 use App\Mod;
 use App\Game;
-use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------

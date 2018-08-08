@@ -14,7 +14,7 @@ class ModController extends Controller
     }
 
     public function new() {
-    	$games = \DB::table("games")->orderBy("name", "asc")->get();
+    	$games = Game::all()->sortBy("name");
         return view("pages.new", ["games" => $games]);
     }
 

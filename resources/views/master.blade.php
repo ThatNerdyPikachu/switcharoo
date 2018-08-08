@@ -1,5 +1,17 @@
 <!DOCTYPE html>
 <html>
+<!--
+	switcharoo
+	copyright 2018 pika studios llc (lol jk)
+	any work of pikas is hers don't steal
+
+	thanks to:
+	- miguel
+	- wrath
+	- slick 💖
+	- and you!
+-->
+
 <head>
 	<title>Switcharoo</title>
 	<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.bundle.min.js"></script>

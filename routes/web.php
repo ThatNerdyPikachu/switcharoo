@@ -15,5 +15,9 @@ Route::get('/', function () {
     return view('pages.home');
 });
 
+Route::get("/login", "AuthController@redirect")->name("login");
+Route::get("/callback", "AuthController@callback");
+Route::get("/logout", "AuthController@logout");
+
 Route::get("/new", "ModController@new");
 Route::post("/mods", "ModController@store");

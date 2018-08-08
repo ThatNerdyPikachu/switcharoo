@@ -1,6 +1,8 @@
 <?php
 
 use App\Mod;
+use App\Game;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +27,8 @@ Route::get("/logout", "AuthController@logout")->name("logout");
 Route::get("/mods/new", "ModController@new")->name("new");
 Route::post("/mods", "ModController@store");
 Route::get("/mods/{mod}", "ModController@view")->name("view");
+
+Route::get("/games/{game}", function(Game $game) {
+	$mods = Mod::where("game_id", $game->id)->get()->chunk(3);
+	return view("pages.game", ["mods" => $mods, "game" => $game]);
+})->name("game");

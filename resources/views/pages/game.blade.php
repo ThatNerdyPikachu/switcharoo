@@ -3,6 +3,13 @@
 @section("content")
 
 <br><div class="container">
+	<div class="card">
+		<div class="card-body">
+			<h5 class="card-title">{{ $game->name }}</h5>
+			<p class="card-text">{{ $game->description }}</p>
+		</div>
+	</div><br>
+
 	@foreach ($mods as $row)
 	<div class="row">
 		@foreach ($row as $mod)

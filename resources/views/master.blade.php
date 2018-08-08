@@ -19,7 +19,11 @@
 					<a class="nav-link" href="/">Home</a>
 				</li>
 			</ul>
-			<a class="navbar-text">Login</a>
+			@if (Auth::check())
+				<a class="navbar-text" href="/logout">Logout ({{ Auth::user()->name }})</a>
+			@else
+				<a class="navbar-text" href="/login">Login</a>
+			@endif
 		</div>
 	</nav>
 

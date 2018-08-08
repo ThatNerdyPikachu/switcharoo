@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Game;
 use App\Mod;
 
 class ModController extends Controller
@@ -13,7 +14,8 @@ class ModController extends Controller
     }
 
     public function new() {
-    	return view("pages.new");
+    	$games = \DB::table("games")->orderBy("name", "asc")->get();
+        return view("pages.new", ["games" => $games]);
     }
 
     public function store(Request $request) {
@@ -21,11 +23,12 @@ class ModController extends Controller
     		"name" => "required|max:256",
     		"description" => "required|max:500",
     		"file" => "required|file|mimes:zip,rar,7z",
-    		"image" => "required|file|mimes:png"
+    		"image" => "required|file|mimes:png",
+            "game" => "required"
     	]);
 
     	$mod = new Mod;
-        $mod->fill(["name" => $request->name, "description" => $request->description, "user_id" => \Auth::id(), "game_id" => 0]);
+        $mod->fill(["name" => $request->name, "description" => $request->description, "user_id" => $request->user()->id, "game_id" => $request->game]);
     	$mod->url = config("app.url").'/'.str_replace("public", "storage", $request->file("file")->store("public/mods"));
     	$mod->image_url = config("app.url").'/'.str_replace("public", "storage", $request->file("image")->store("public/images"));
     	$mod->save();

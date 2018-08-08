@@ -25,13 +25,9 @@ class ModController extends Controller
     	]);
 
     	$mod = new Mod;
-    	$mod->name = $request->name;
-    	$mod->description = $request->description;
+        $mod->fill(["name" => $request->name, "description" => $request->description, "user_id" => \Auth::id, "game_id" => 0]);
     	$mod->url = config("app.url").'/'.str_replace("public", "storage", $request->file("file")->store("public/mods"));
     	$mod->image_url = config("app.url").'/'.str_replace("public", "storage", $request->file("image")->store("public/images"));
-    	// placeholders
-    	$mod->user_id = 0;
-    	$mod->game_id = 0;
     	$mod->save();
     }
 }

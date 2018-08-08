@@ -25,7 +25,7 @@
             "database/factories"
         ],
         "psr-4": {
-            "App\\": "app/"
+            "Switcharoo\\": "app/"
         }
     },
     "autoload-dev": {

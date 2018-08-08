@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Switcharoo;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\Authenticatable;
@@ -13,6 +13,6 @@ class User extends Model implements Authenticatable
 	protected $guarded = [];
 
     public function mods() {
-    	return $this->hasMany("App\Mod");
+    	return $this->hasMany("Switcharoo\Mod");
     }
 }

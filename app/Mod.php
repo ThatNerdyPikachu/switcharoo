@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Switcharoo;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,10 +10,10 @@ class Mod extends Model
 	protected $guarded = [];
 
     public function user() {
-    	return $this->belongsTo("App\User");
+    	return $this->belongsTo("Switcharoo\User");
     }
 
     public function game() {
-    	return $this->belongsTo("App\Game");
+    	return $this->belongsTo("Switcharoo\Game");
     }
 }

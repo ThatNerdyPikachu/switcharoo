@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Switcharoo\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\User;
+use Switcharoo\User;
 
 class AuthController extends Controller
 {

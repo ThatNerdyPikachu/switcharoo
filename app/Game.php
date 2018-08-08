@@ -1,12 +1,12 @@
 <?php
 
-namespace App;
+namespace Switcharoo;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Game extends Model
 {
     public function games() {
-    	return $this->hasMany("App\Game");
+    	return $this->hasMany("Switcharoo\Game");
     }
 }

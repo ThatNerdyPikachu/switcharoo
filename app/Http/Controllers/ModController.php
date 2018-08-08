@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Switcharoo\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Game;
-use App\Mod;
+use Switcharoo\Game;
+use Switcharoo\Mod;
 
 class ModController extends Controller
 {

@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('pages.home');
 });
+
+Route::get("/new", "ModController@new");
+Route::post("/mods", "ModController@store");

@@ -14,11 +14,14 @@ class AuthController extends Controller
 
 	public function callback() {
 		$user = \Socialite::driver("discord")->user();
-		if(User::where("discord_id", (int)$user->id)->first()) {
-			return redirect()->intended(route("home"));
+		$u = User::where("discord_id", (int)$user->id)->first();
+		if($u) {
+			\Auth::login($u, true);
+			return redirect()->to(route("home"));
 		} else {
-			User::create(["discord_id" => (int)$user->id, "name" => $user->name, "email" => $user->email, "avatar_url" => $user->avatar]);
-			$this->redirect()->intended(route("home"));
+			$u = User::create(["discord_id" => (int)$user->id, "name" => $user->name, "email" => $user->email, "avatar_url" => $user->avatar]);
+			\Auth::login($u, true);
+			return redirect()->to(route("home"));
 		}
 	}
 

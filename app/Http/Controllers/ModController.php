@@ -19,13 +19,13 @@ class ModController extends Controller
     public function store(Request $request) {
     	$this->validate($request, [
     		"name" => "required|max:256",
-    		"description" => "required|max:512",
+    		"description" => "required|max:500",
     		"file" => "required|file|mimes:zip,rar,7z",
-    		"image" => "required|file|mimes:png,jpg,jpeg"
+    		"image" => "required|file|mimes:png"
     	]);
 
     	$mod = new Mod;
-        $mod->fill(["name" => $request->name, "description" => $request->description, "user_id" => \Auth::id, "game_id" => 0]);
+        $mod->fill(["name" => $request->name, "description" => $request->description, "user_id" => \Auth::id(), "game_id" => 0]);
     	$mod->url = config("app.url").'/'.str_replace("public", "storage", $request->file("file")->store("public/mods"));
     	$mod->image_url = config("app.url").'/'.str_replace("public", "storage", $request->file("image")->store("public/images"));
     	$mod->save();

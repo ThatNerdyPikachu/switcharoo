@@ -13,17 +13,12 @@ class AuthController extends Controller
 	}
 
 	public function callback() {
-		$duser = \Socialite::driver("discord")->user();
-		if(User::where("discord_id", (int)$duser->id)->first()) {
-			return redirect()->intended("/");
+		$user = \Socialite::driver("discord")->user();
+		if(User::where("discord_id", (int)$user->id)->first()) {
+			return redirect()->intended("home");
 		} else {
-			$user = new User;
-			$user->discord_id = (int)$duser->id;
-			$user->name = $duser->name;
-			$user->email = $duser->email;
-			$user->avatar_url = $duser->avatar;
-			$user->save();
-			$this->redirect()->intended("/");
+			User::create(["discord_id" => (int)$user->id, "name" => $user->name, "email" => $user->email, "avatar_url" => $user->avatar]);
+			$this->redirect()->intended("home");
 		}
 	}
 

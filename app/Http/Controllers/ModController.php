@@ -27,11 +27,7 @@ class ModController extends Controller
             "game" => "required"
     	]);
 
-    	$mod = new Mod;
-        $mod->fill(["name" => $request->name, "description" => $request->description, "user_id" => $request->user()->id, "game_id" => $request->game]);
-    	$mod->url = config("app.url").'/'.str_replace("public", "storage", $request->file("file")->store("public/mods"));
-    	$mod->image_url = config("app.url").'/'.str_replace("public", "storage", $request->file("image")->store("public/images"));
-    	$mod->save();
+        Mod::create(["name" => $request->name, "description" => $request->description, "user_id" => $request->user()->id, "game_id" => $request->game, "url" => config("app.url")."/storage/".$request->file("file")->store("mods"), "image_url" => config("app.url")."/storage/".$request->file("image")->store("images")]);
     }
 
     public function view(Mod $mod) {

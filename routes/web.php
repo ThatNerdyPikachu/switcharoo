@@ -1,7 +1,7 @@
 <?php
 
-use App\Mod;
-use App\Game;
+use Switcharoo\Mod;
+use Switcharoo\Game;
 
 /*
 |--------------------------------------------------------------------------

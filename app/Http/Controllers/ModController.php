@@ -18,19 +18,31 @@ class ModController extends Controller
         return view("pages.new", ["games" => $games]);
     }
 
-    public function store(Request $request) {
+    public function create(Request $request) {
     	$this->validate($request, [
     		"name" => "required|max:256",
     		"description" => "required|max:500",
     		"file" => "required|file|mimes:zip,rar,7z",
-    		"image" => "required|file|mimes:png",
+    		"image" => "required|file|mimes:png,jpg,jpeg",
             "game" => "required"
     	]);
 
-        Mod::create(["name" => $request->name, "description" => $request->description, "user_id" => $request->user()->id, "game_id" => $request->game, "url" => config("app.url")."/storage/".$request->file("file")->store("mods"), "image_url" => config("app.url")."/storage/".$request->file("image")->store("images")]);
+        Mod::create(["name" => $request->name, "description" => $request->description, "user_id" => $request->user()->id, "game_id" => $request->game, "url" => config("app.url")."/storage/".$request->file("file")->storeAs("mods", md5($request->name.$request->user()->discord_id)), "image_url" => config("app.url")."/storage/".$request->file("image")->storeAs("images", md5($request->name.$request->user()->discord_id))]);
     }
 
     public function view(Mod $mod) {
         return view("pages.view", ["mod" => $mod]);
+    }
+
+    public function edit(Mod $mod) {
+        if (\Gate::allows("modify-mod", $mod)) {
+            return view("pages.edit", ["mod" => $mod]);
+        }
+    }
+
+    public function update(Request $request) {
+        if (\Gate::allows("modify-mod", $mod)) {
+            // TODO: Actually edit the mod
+        }
     }
 }

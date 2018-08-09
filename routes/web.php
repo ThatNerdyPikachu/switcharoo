@@ -24,8 +24,11 @@ Route::get("/callback", "AuthController@callback");
 Route::get("/logout", "AuthController@logout")->name("logout");
 
 Route::get("/mods/new", "ModController@new")->name("new");
-Route::post("/mods", "ModController@store");
 Route::get("/mods/{mod}", "ModController@view")->name("view");
+Route::get("/mods/{mod}/edit", "ModController@edit")->name("edit");
+
+Route::post("/mods", "ModController@create");
+Route::patch("/mods", "ModController@update");
 
 Route::get("/games/{game}", function(Game $game) {
 	$mods = Mod::where("game_id", $game->id)->get()->chunk(3);
